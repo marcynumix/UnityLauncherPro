@@ -2154,6 +2154,30 @@ public static class UnityLauncherProTools
         {
             var projectPath = proj.Path;
 
+            string url = GetGitlabURL(projectPath);
+
+            //Open in browser
+            if (url != null)
+            {
+                OpenURL(url);
+            }
+        }
+
+        public static void OpenGitlabCICDPage(Project proj)
+        {
+            var projectPath = proj.Path;
+
+            string url = GetGitlabURL(projectPath).Replace(".git", "/pipelines");
+
+            //Open in browser
+            if (url != null)
+            {
+                OpenURL(url);
+            }
+        }
+
+        private static string GetGitlabURL(string projectPath)
+        {
             string result = null;
 
             string dirName = Path.Combine(projectPath, ".git");
@@ -2171,14 +2195,12 @@ public static class UnityLauncherProTools
                 string configPath = Path.Combine(dirName, "config");
                 if (File.Exists(configPath))
                 {
-
                     string[] lines = File.ReadAllLines(configPath);
                     foreach (string line in lines)
                     {
 
                         if (line.Contains("url ="))
                         {
-
                             result = line.Split('=')[1].Trim();
                             break;
                         }
@@ -2192,11 +2214,7 @@ public static class UnityLauncherProTools
                 result = result.Replace(":30001", "/");
             }
 
-            //Open in browser
-            if (result != null)
-            {
-                OpenURL(result);
-            }
+            return result;
         }
     } // class
 
