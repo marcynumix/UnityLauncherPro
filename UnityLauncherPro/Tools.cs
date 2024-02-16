@@ -2149,6 +2149,55 @@ public static class UnityLauncherProTools
             proc.StartInfo.CreateNoWindow = true;
             proc.Start();
         }
+
+        public static void OpenGitlabPage(Project proj)
+        {
+            var projectPath = proj.Path;
+
+            string result = null;
+
+            string dirName = Path.Combine(projectPath, ".git");
+
+            if (!Directory.Exists(dirName))
+            {
+                // check if its subfolder
+                dirName = Path.Combine(projectPath, "..", ".git");
+            }
+
+            //Read origin url from .git/config
+            if (Directory.Exists(dirName))
+            {
+
+                string configPath = Path.Combine(dirName, "config");
+                if (File.Exists(configPath))
+                {
+
+                    string[] lines = File.ReadAllLines(configPath);
+                    foreach (string line in lines)
+                    {
+
+                        if (line.Contains("url ="))
+                        {
+
+                            result = line.Split('=')[1].Trim();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (result != null && result.Contains("ssh"))
+            {
+                result = result.Replace("ssh://git@", "https://");
+                result = result.Replace(":30001", "/");
+            }
+
+            //Open in browser
+            if (result != null)
+            {
+                OpenURL(result);
+            }
+        }
     } // class
 
 } // namespace

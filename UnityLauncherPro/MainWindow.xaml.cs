@@ -3629,6 +3629,15 @@ namespace UnityLauncherPro
             Tools.OpenWithFork(proj);
         }
 
+        private void MenuOpenGitlabPage_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.OpenGitlabPage(proj);
+        }
+
     } // class
 } //namespace
 
