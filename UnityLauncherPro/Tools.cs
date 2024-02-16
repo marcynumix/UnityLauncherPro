@@ -2136,6 +2136,19 @@ public static class UnityLauncherProTools
             //Display message box
             MessageBox.Show("Project " + proj.Title + " reset", "Reset Project", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        public static void OpenWithFork(Project proj)
+        {
+            //Run fork located in %localappdata%\fork\fork.exe            
+            var proc = new Process();
+            proc.StartInfo.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "fork", "fork.exe");
+            proc.StartInfo.Arguments = proj.Path;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+        }
     } // class
 
 } // namespace

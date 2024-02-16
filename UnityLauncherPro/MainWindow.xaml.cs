@@ -3620,6 +3620,15 @@ namespace UnityLauncherPro
             Tools.ResetProject(proj);
         }
 
+        private void MenuOpenWithFork_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.OpenWithFork(proj);
+        }
+
     } // class
 } //namespace
 
