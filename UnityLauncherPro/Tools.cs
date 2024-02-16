@@ -2090,6 +2090,45 @@ public static class UnityLauncherProTools
                 Console.WriteLine(fullPath);
             }
         }
+
+        //NUMIX
+        public static void CleanProject(Project proj)
+        {
+            //Run git clean -dxf in project folder
+            var proc = new Process();
+            proc.StartInfo.FileName = "git";
+            proc.StartInfo.Arguments = "clean -dxf";
+            proc.StartInfo.WorkingDirectory = proj.Path;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            proc.WaitForExit();
+            Console.WriteLine("Cleaned project: " + proj.Title);
+
+            //Display message box
+            MessageBox.Show("Project " + proj.Title + " cleaned", "Clean Project", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public static void ResetProject(Project proj)
+        {
+            //Run git reset --hard in project folder
+            var proc = new Process();
+            proc.StartInfo.FileName = "git";
+            proc.StartInfo.Arguments = "reset --hard";
+            proc.StartInfo.WorkingDirectory = proj.Path;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            proc.WaitForExit();
+            Console.WriteLine("Reset project: " + proj.Title);
+
+            //Display message box
+            MessageBox.Show("Project " + proj.Title + " reset", "Reset Project", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     } // class
 
 } // namespace

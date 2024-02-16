@@ -3599,6 +3599,27 @@ namespace UnityLauncherPro
         //    if (proj == null) return;
         //    Tools.DisplayProjectProperties(proj, this);
         //}
+
+        //NUMIX
+        private void MenuCleanProject_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.CleanProject(proj);
+        }
+
+        private void MenuResetProject_Click(object sender, RoutedEventArgs e)
+        {
+
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.ResetProject(proj);
+        }
+
     } // class
 } //namespace
 
