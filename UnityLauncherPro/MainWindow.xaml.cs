@@ -3647,6 +3647,14 @@ namespace UnityLauncherPro
             Tools.OpenGitlabCICDPage(proj);
         }
 
+        private void MenuEditBuildVersion_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.EditBuildVersion(proj);
+        }
     } // class
 } //namespace
 

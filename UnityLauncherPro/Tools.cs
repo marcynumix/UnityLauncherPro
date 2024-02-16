@@ -2176,6 +2176,27 @@ public static class UnityLauncherProTools
             }
         }
 
+        public static void EditBuildVersion(Project proj)
+        {
+            var projectPath = proj.Path;
+
+            string filePath = Path.Combine(projectPath, "..", "build_version.txt");
+
+            //Open in notepad
+            if (File.Exists(filePath))
+            {
+                var proc = new Process();
+                proc.StartInfo.FileName = "notepad";
+                proc.StartInfo.Arguments = filePath;
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.RedirectStandardError = true;
+                proc.StartInfo.CreateNoWindow = true;
+                proc.Start();
+            }
+
+        }
+
         private static string GetGitlabURL(string projectPath)
         {
             string result = null;
