@@ -1076,6 +1076,13 @@ namespace UnityLauncherPro
         {
             string results = null;
             string dirName = Path.Combine(projectPath, ".git");
+
+            if (!Directory.Exists(dirName))
+            {
+                // check if its subfolder
+                dirName = Path.Combine(projectPath, "..", ".git");
+            }
+
             if (Directory.Exists(dirName))
             {
                 string branchFile = Path.Combine(dirName, "HEAD");
