@@ -3655,6 +3655,15 @@ namespace UnityLauncherPro
 
             Tools.EditBuildVersion(proj);
         }
+
+        private void MenuApplyBuildVersion_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            Tools.ApplyBuildVersion(proj);
+        }
     } // class
 } //namespace
 

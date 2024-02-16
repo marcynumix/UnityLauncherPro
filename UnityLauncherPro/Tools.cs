@@ -2197,6 +2197,27 @@ public static class UnityLauncherProTools
 
         }
 
+        public static void ApplyBuildVersion(Project proj)
+        {
+            var projectPath = proj.Path;
+
+            var rootFolder = Path.Combine(projectPath, "..");
+
+            //build_version_SET.ps1
+
+            //Execute build_version_SET.ps1 powershell script
+            var proc = new Process();
+            proc.StartInfo.FileName = "powershell";
+            proc.StartInfo.Arguments = "-ExecutionPolicy Bypass -File build_version_SET.ps1";
+            proc.StartInfo.WorkingDirectory = rootFolder;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.RedirectStandardError = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            proc.WaitForExit();
+        }
+
         private static string GetGitlabURL(string projectPath)
         {
             string result = null;
