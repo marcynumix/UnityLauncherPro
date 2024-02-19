@@ -97,6 +97,7 @@
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NumixTools.cs" />
     <Compile Include="ProjectProperties.xaml.cs">
       <DependentUpon>ProjectProperties.xaml</DependentUpon>
     </Compile>
