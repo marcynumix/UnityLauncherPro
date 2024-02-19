@@ -49,7 +49,7 @@ namespace UnityLauncherPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool minimizeToTaskbar {
             get {
                 return ((bool)(this["minimizeToTaskbar"]));
@@ -97,7 +97,7 @@ namespace UnityLauncherPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool showArgumentsColumn {
             get {
                 return ((bool)(this["showArgumentsColumn"]));
@@ -109,7 +109,7 @@ namespace UnityLauncherPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool showGitBranchColumn {
             get {
                 return ((bool)(this["showGitBranchColumn"]));
@@ -216,7 +216,7 @@ namespace UnityLauncherPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool showTargetPlatform {
             get {
                 return ((bool)(this["showTargetPlatform"]));
@@ -264,7 +264,7 @@ namespace UnityLauncherPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool enablePlatformSelection {
             get {
                 return ((bool)(this["enablePlatformSelection"]));
