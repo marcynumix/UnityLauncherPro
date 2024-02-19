@@ -3612,7 +3612,6 @@ namespace UnityLauncherPro
 
         private void MenuResetProject_Click(object sender, RoutedEventArgs e)
         {
-
             var proj = GetSelectedProject();
             if (proj == null)
                 return;
