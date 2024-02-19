@@ -3607,7 +3607,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.CleanProject(proj);
+            NumixTools.CleanProject(proj);
         }
 
         private void MenuResetProject_Click(object sender, RoutedEventArgs e)
@@ -3617,7 +3617,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.ResetProject(proj);
+            NumixTools.ResetProject(proj);
         }
 
         private void MenuOpenWithFork_Click(object sender, RoutedEventArgs e)
@@ -3626,7 +3626,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.OpenWithFork(proj);
+            NumixTools.OpenWithFork(proj);
         }
 
         private void MenuOpenGitlabPage_Click(object sender, RoutedEventArgs e)
@@ -3635,7 +3635,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.OpenGitlabPage(proj);
+            NumixTools.OpenGitlabPage(proj);
         }
 
         private void MenuOpenGitlabCICDPage_Click(object sender, RoutedEventArgs e)
@@ -3644,7 +3644,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.OpenGitlabCICDPage(proj);
+            NumixTools.OpenGitlabCICDPage(proj);
         }
 
         private void MenuEditBuildVersion_Click(object sender, RoutedEventArgs e)
@@ -3653,7 +3653,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.EditBuildVersion(proj);
+            NumixTools.EditBuildVersion(proj);
         }
 
         private void MenuApplyBuildVersion_Click(object sender, RoutedEventArgs e)
@@ -3662,7 +3662,7 @@ namespace UnityLauncherPro
             if (proj == null)
                 return;
 
-            Tools.ApplyBuildVersion(proj);
+            NumixTools.ApplyBuildVersion(proj);
         }
     } // class
 } //namespace
