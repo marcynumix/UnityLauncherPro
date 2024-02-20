@@ -15,16 +15,7 @@ namespace UnityLauncherPro
             proc.StartInfo.FileName = "git";
             proc.StartInfo.Arguments = "clean -dxf";
             proc.StartInfo.WorkingDirectory = proj.Path;
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.RedirectStandardError = true;
-            proc.StartInfo.CreateNoWindow = true;
             proc.Start();
-            proc.WaitForExit();
-            Console.WriteLine("Cleaned project: " + proj.Title);
-
-            //Display message box
-            MessageBox.Show("Project " + proj.Title + " cleaned", "Clean Project", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public static void ResetProject(Project proj)
@@ -34,16 +25,35 @@ namespace UnityLauncherPro
             proc.StartInfo.FileName = "git";
             proc.StartInfo.Arguments = "reset --hard";
             proc.StartInfo.WorkingDirectory = proj.Path;
+            proc.Start();
+        }
+
+        public static void ProjectStatus(Project proj)
+        {
+            //Get git status and display in message box
+            var proc = new Process();
+            proc.StartInfo.FileName = "git";
+            proc.StartInfo.Arguments = "status";
+            proc.StartInfo.WorkingDirectory = proj.Path;
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.RedirectStandardError = true;
             proc.StartInfo.CreateNoWindow = true;
             proc.Start();
             proc.WaitForExit();
-            Console.WriteLine("Reset project: " + proj.Title);
 
-            //Display message box
-            MessageBox.Show("Project " + proj.Title + " reset", "Reset Project", MessageBoxButton.OK, MessageBoxImage.Information);
+            string output = proc.StandardOutput.ReadToEnd();
+            string error = proc.StandardError.ReadToEnd();
+
+            if (error != "")
+            {
+                MessageBox.Show(error);
+            }
+            else
+            {
+
+                MessageBox.Show(output);
+            }
         }
 
         public static void OpenWithFork(Project proj)
@@ -135,7 +145,7 @@ namespace UnityLauncherPro
             var proc = new Process();
             proc.StartInfo.FileName = "C:\\Program Files\\Git\\bin\\bash.exe";
             proc.StartInfo.WorkingDirectory = projectPath;
-            proc.Start();            
+            proc.Start();
         }
 
         private static string GetGitlabURL(string projectPath)

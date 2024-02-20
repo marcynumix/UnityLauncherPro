@@ -3619,6 +3619,15 @@ namespace UnityLauncherPro
             NumixTools.ResetProject(proj);
         }
 
+        private void MenuProjectStatus_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            NumixTools.ProjectStatus(proj);
+        }
+
         private void MenuOpenWithFork_Click(object sender, RoutedEventArgs e)
         {
             var proj = GetSelectedProject();

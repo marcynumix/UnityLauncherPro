@@ -206,6 +206,7 @@
                                 <Separator/>
                                 <MenuItem x:Name="menuRemoveProject" Header="Remove from recent list" Click="MenuRemoveProject_Click" />
                                 <Separator/>
+                                <MenuItem x:Name="menuProjectStatus" Header="Project Status (git status)" Click="MenuProjectStatus_Click" />
                                 <MenuItem x:Name="menuCleanProject" Header="Clean Project (git clean -dxf)" Click="MenuCleanProject_Click" />
                                 <MenuItem x:Name="menuResetProject" Header="Reset Project (git reset --hard)" Click="MenuResetProject_Click" />
                                 <Separator/>
