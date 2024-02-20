@@ -3663,6 +3663,15 @@ namespace UnityLauncherPro
 
             NumixTools.ApplyBuildVersion(proj);
         }
+
+        private void MenuOpenWithGitBash_Click(object sender, RoutedEventArgs e)
+        {
+            var proj = GetSelectedProject();
+            if (proj == null)
+                return;
+
+            NumixTools.OpenWithGitBash(proj);
+        }
     } // class
 } //namespace
 

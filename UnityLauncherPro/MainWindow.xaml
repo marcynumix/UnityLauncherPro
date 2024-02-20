@@ -185,6 +185,7 @@
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="menuOpenWithFork" Header="Open with Fork" Click="MenuOpenWithFork_Click" />
+                                <MenuItem x:Name="menuOpenWithGitBash" Header="Open Git Bash" Click="MenuOpenWithGitBash_Click" />
                                 <MenuItem x:Name="menuOpenGitlabPage" Header="Open Gitlab page" Click="MenuOpenGitlabPage_Click" />
                                 <MenuItem x:Name="menuOpenGitlabCICDPage" Header="Open Gitlab CI/CD page" Click="MenuOpenGitlabCICDPage_Click" />
                                 <MenuItem x:Name="menuItemCopyVersion" Header="Copy Unity Version" Click="MenuItemCopyVersion_Click" />

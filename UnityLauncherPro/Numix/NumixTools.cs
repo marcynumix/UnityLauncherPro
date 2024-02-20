@@ -127,6 +127,17 @@ namespace UnityLauncherPro
             proc.WaitForExit();
         }
 
+        public static void OpenWithGitBash(Project proj)
+        {
+            var projectPath = proj.Path;
+
+            //run C:\\Program Files\\Git\\bin\\bash.exe
+            var proc = new Process();
+            proc.StartInfo.FileName = "C:\\Program Files\\Git\\bin\\bash.exe";
+            proc.StartInfo.WorkingDirectory = projectPath;
+            proc.Start();            
+        }
+
         private static string GetGitlabURL(string projectPath)
         {
             string result = null;
