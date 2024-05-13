@@ -51,7 +51,6 @@ namespace UnityLauncherPro
             }
             else
             {
-
                 MessageBox.Show(output);
             }
         }

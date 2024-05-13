@@ -46,6 +46,7 @@ namespace UnityLauncherPro
         System.Windows.Forms.NotifyIcon notifyIcon;
 
         Updates[] updatesSource;
+        public static List<string> updatesAsStrings;
 
         string _filterString = null;
         bool multiWordSearch = false;
@@ -98,6 +99,12 @@ namespace UnityLauncherPro
 
             // need to load here to get correct window size early
             LoadSettings();
+
+            // set version number
+            if (string.IsNullOrEmpty(Version.Stamp) == false)
+            {
+                lblVersion.Content = "Build: " + Version.Stamp;
+            }
         }
 
         void Start()
@@ -410,6 +417,7 @@ namespace UnityLauncherPro
                 txtRootFolderForNewProjects.Text = Properties.Settings.Default.newProjectsRoot;
                 txtWebglRelativePath.Text = Properties.Settings.Default.webglBuildPath;
                 txtCustomThemeFile.Text = Properties.Settings.Default.themeFile;
+                useAlphaReleaseNotesSite.IsChecked = Properties.Settings.Default.useAlphaReleaseNotes;
 
                 chkEnablePlatformSelection.IsChecked = Properties.Settings.Default.enablePlatformSelection;
                 chkRunAutomatically.IsChecked = Properties.Settings.Default.runAutomatically;
@@ -737,7 +745,7 @@ namespace UnityLauncherPro
             var items = await task;
             //Console.WriteLine("CallGetUnityUpdates=" + items == null);
             if (items == null) return;
-            updatesSource = GetUnityUpdates.Parse(items);
+            updatesSource = GetUnityUpdates.Parse(items, ref updatesAsStrings);
             if (updatesSource == null) return;
             dataGridUpdates.ItemsSource = updatesSource;
         }
@@ -1027,7 +1035,7 @@ namespace UnityLauncherPro
                     var items = await task;
                     if (task.IsCompleted == false || task.IsFaulted == true) return;
                     if (items == null) return;
-                    updatesSource = GetUnityUpdates.Parse(items);
+                    updatesSource = GetUnityUpdates.Parse(items, ref updatesAsStrings);
                     if (updatesSource == null) return;
                     dataGridUpdates.ItemsSource = updatesSource;
                 }
@@ -1820,6 +1828,7 @@ namespace UnityLauncherPro
 
         private void BtnAssetPackages_Click(object sender, RoutedEventArgs e)
         {
+            Tools.OpenCustomAssetPath();
             Tools.OpenAppdataSpecialFolder("../Roaming/Unity/Asset Store-5.x");
         }
 
@@ -1990,8 +1999,6 @@ namespace UnityLauncherPro
         bool isInitializing = true; // used to avoid doing things while still starting up
         private void ChkStreamerMode_Checked(object sender, RoutedEventArgs e)
         {
-            if (this.IsActive == false) return; // dont run code on window init
-
             var isChecked = (bool)((CheckBox)sender).IsChecked;
 
             Settings.Default.streamerMode = isChecked;
@@ -3591,6 +3598,40 @@ namespace UnityLauncherPro
         private void btnHubLogs_Click(object sender, RoutedEventArgs e)
         {
             Tools.OpenAppdataSpecialFolder("../Roaming/UnityHub/logs/");
+        }
+
+        private void txtDownloadFromHash_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                var hash = (((TextBox)sender).Text).Trim();
+                if (string.IsNullOrEmpty(hash) == false)
+                {
+                    var url = Tools.ParseDownloadURLFromWebpage(hash, false, true);
+                    if (string.IsNullOrEmpty(url) == false)
+                    {
+                        Tools.DownloadInBrowser(url, hash, false, true);
+                    }
+                }
+            }
+        }
+
+        private void btnOpenEditorLogsFolder_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle)
+            {
+                var logfolder = Tools.GetEditorLogsFolder();
+                var logFile = Path.Combine(logfolder, "Editor.log");
+                if (File.Exists(logFile) == true) Tools.LaunchExe(logFile);
+            }
+        }
+
+        private void UseAlphaReleaseNotes_Checked(object sender, RoutedEventArgs e)
+        {
+            var isChecked = (bool)((CheckBox)sender).IsChecked;
+
+            Settings.Default.useAlphaReleaseNotes = isChecked;
+            Settings.Default.Save();
         }
 
         //private void menuProjectProperties_Click(object sender, RoutedEventArgs e)
