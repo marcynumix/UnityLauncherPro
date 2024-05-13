@@ -1710,7 +1710,7 @@ namespace UnityLauncherPro
 
 
             }
-            else if (e.Column.DisplayIndex == 4) // edit launcher arguments
+            else if (e.Column.Header.ToString().Equals("Arguments")) // edit launcher arguments
             {
                 // get current arguments, after editing
                 TextBox t = e.EditingElement as TextBox;
